@@ -11,6 +11,7 @@ package hsm.modelo;
  */
 public class Curso {
     
+	//Teste
     private Integer id;
     private String nome;
     private String descricao;

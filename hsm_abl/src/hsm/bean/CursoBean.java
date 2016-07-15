@@ -15,7 +15,7 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author Rafael
+ * @author Rafael Vidal
  */
 @ManagedBean
 public class CursoBean {
