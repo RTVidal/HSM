@@ -7,7 +7,7 @@ package hsm.modelo;
 
 /**
  *
- * @author Rafael
+ * @author Rafael Vidal
  */
 public class Curso {
     
