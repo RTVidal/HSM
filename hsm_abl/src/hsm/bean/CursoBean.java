@@ -26,24 +26,44 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class CursoBean {
 
-    private Curso curso = new Curso();
+    private Curso curso;
     private List<TipoCurso> tipos = Arrays.asList(TipoCurso.values());
     private List<Curso> cursos = new ArrayList<Curso>();
     /**
      * Creates a new instance of CursoBean
      */
     public CursoBean() {
+    	cursos = new CursoDAO().listarCursos();
+    	curso = new Curso();
     }
     
     public String Salvar()
     {
         new CursoDAO().Salvar(curso);
         
-        cursos.add(curso);
+        cursos = new CursoDAO().listarCursos();
         curso = new Curso();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso salvo com sucesso!"));
         
         return "curso_lista?faces-redirect=true";
+    }
+    
+    public String Editar(Curso curso)
+    {
+    	this.curso = curso;
+    	return "curso_formulario?faces-redirect=true";
+    }
+    
+    public void PrepararExclusao(Curso curso)
+    {
+    	this.curso = curso;
+    }
+    
+    public void Excluir()
+    {
+    	new CursoDAO().Excluir(curso);
+    	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso excluído com sucesso!"));
+    	cursos = new CursoDAO().listarCursos();    	
     }
     
     public String getDataAtual()

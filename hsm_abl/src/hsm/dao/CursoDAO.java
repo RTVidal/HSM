@@ -5,25 +5,49 @@
  */
 package hsm.dao;
 
-import hsm.modelo.Curso;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+
+import hsm.modelo.Curso;
 
 /**
  *
  * @author Rafael
  */
 public class CursoDAO {
-    
-    public void Salvar(Curso curso)
-    {
-        EntityManager em = JPAUtil.getEntityManager();
-        
-        em.getTransaction().begin();
-        
-        em.merge(curso);
-        
-        em.getTransaction().commit();
-        
-        em.close();
-    }
+
+	public void Salvar(Curso curso) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		em.getTransaction().begin();
+
+		em.merge(curso);
+
+		em.getTransaction().commit();
+
+		em.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Curso> listarCursos() {
+		
+		EntityManager em = JPAUtil.getEntityManager();		
+		
+		return em.createQuery("from Curso").getResultList();
+	}
+
+	public void Excluir(Curso curso) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		em.getTransaction().begin();
+
+		curso = em.merge(curso);
+		
+		em.remove(curso);
+
+		em.getTransaction().commit();
+
+		em.close();
+	}
 }
