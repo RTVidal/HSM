@@ -6,28 +6,28 @@
 package hsm.modelo;
 
 /**
- *
- * @author Rafael
- */
+*
+* @author Rafael
+*/
 public enum TipoCurso {
-    
-    CORDAS("Cordas"),
-    MADEIRAS("Madeiras"),
-    METAIS("Metais"),
-    PERCURSSAO("Percurss√£o");
-    
-    private String descricao;
-    
-    private TipoCurso(String descricao)
-    {
-        this.descricao = descricao;
-    }
+   
+   CORDAS("Cordas"),
+   MADEIRAS("Madeiras"),
+   METAIS("Metais"),
+   PERCURSSAO("Percurss„o");
+   
+   private String descricao;
+   
+   private TipoCurso(String descricao)
+   {
+       this.descricao = descricao;
+   }
 
-    public String getDescricao() {
-        return descricao;
-    }
+   public String getDescricao() {
+       return descricao;
+   }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+   public void setDescricao(String descricao) {
+       this.descricao = descricao;
+   }
 }
