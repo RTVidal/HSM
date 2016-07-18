@@ -29,11 +29,13 @@ public class CursoBean {
     private Curso curso;
     private List<TipoCurso> tipos = Arrays.asList(TipoCurso.values());
     private List<Curso> cursos = new ArrayList<Curso>();
+    private List<Curso> cursosAccordion = new ArrayList<Curso>();
     /**
      * Creates a new instance of CursoBean
      */
     public CursoBean() {
     	cursos = new CursoDAO().listarCursos();
+    	cursosAccordion = new CursoDAO().listarCursosAccordion();
     	curso = new Curso();
     }
     
@@ -62,7 +64,7 @@ public class CursoBean {
     public void Excluir()
     {
     	new CursoDAO().Excluir(curso);
-    	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso excluído com sucesso!"));
+    	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso excluÃ­do com sucesso!"));
     	cursos = new CursoDAO().listarCursos();    	
     }
     

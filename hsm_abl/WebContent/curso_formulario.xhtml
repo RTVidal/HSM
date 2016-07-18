@@ -15,7 +15,7 @@
                     <h:outputLabel value="Nome:"/>
                     <p:inputText value="#{cursoBean.curso.nome}" />
                     <h:outputLabel value="Descrição:"/>
-                    <p:inputTextarea value="#{cursoBean.curso.descricao}" cols="40" rows="3"/>
+                    <p:inputTextarea value="#{cursoBean.curso.descricao}" cols="40" rows="3" maxlength="255"/>
                     <h:outputLabel value="Duração:"/>
                     <p:spinner value="#{cursoBean.curso.duracao}" min="1" max="10" stepFactor="0.5" size="1"/>
                     <h:outputLabel value="Tipo:"/>

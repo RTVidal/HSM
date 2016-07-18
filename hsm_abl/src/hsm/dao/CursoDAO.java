@@ -5,6 +5,7 @@
  */
 package hsm.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,11 +31,18 @@ public class CursoDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Curso> listarCursos() {
-		
-		EntityManager em = JPAUtil.getEntityManager();		
-		
-		return em.createQuery("from Curso").getResultList();
+	public List<Curso> listarCursos() {		
+		try
+		{
+			EntityManager em = JPAUtil.getEntityManager();		
+			
+			return em.createQuery("from Curso").getResultList();
+		} catch (Exception e)
+		{
+			System.out.println("Erro ao listar cursos: " + e.getMessage());
+			
+			return new ArrayList<Curso>();
+		}
 	}
 
 	public void Excluir(Curso curso) {
@@ -49,5 +57,21 @@ public class CursoDAO {
 		em.getTransaction().commit();
 
 		em.close();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Curso> listarCursosAccordion() {
+		try
+		{
+			EntityManager em = JPAUtil.getEntityManager();		
+			
+			return em.createQuery("from Curso where nome in ('Violino' , 'Bateria', 'Clarinete'," + 
+			"'Flauta', 'Guitarra', 'Violão', 'Oboé') order by nome").getResultList();
+		} catch (Exception e)
+		{
+			System.out.println("Erro ao listar cursos: " + e.getMessage());
+			
+			return new ArrayList<Curso>();
+		}
 	}
 }
