@@ -96,5 +96,15 @@ public class CursoBean {
     public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
+
+	public List<Curso> getCursosAccordion() {
+		return cursosAccordion;
+	}
+
+	public void setCursosAccordion(List<Curso> cursosAccordion) {
+		this.cursosAccordion = cursosAccordion;
+	}
+    
+    
 }
 

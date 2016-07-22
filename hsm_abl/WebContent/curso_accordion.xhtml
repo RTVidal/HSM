@@ -8,21 +8,22 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
-
 </h:head>
 
 <h:body>
 	<h:form>
 		<p:panel>
 			<f:facet name="header">
-				<h:outputText value="cursos Accordion"></h:outputText>
+				<h:outputText value="Cursos Accordion"></h:outputText>
 			</f:facet>
 
-			<p:accordionPanel>
+			<p:accordionPanel multiple="true">
 				<c:forEach items="#{cursoBean.cursosAccordion}" var="curso">
-					<p:tab title=#{curso.nome}>
-						<p:graphicImage library="Images" name="#{curso.ObterImagem()}"/>
-						<h:outputText value="#{curso.descricao}"/>
+					<p:tab title="#{curso.nome}">
+						<h:panelGrid columns="2" cellpadding="10">
+							<p:graphicImage value="#{curso.ObterImagem()}" />
+							<h:outputText value="#{curso.descricao}" />
+						</h:panelGrid>
 					</p:tab>
 				</c:forEach>
 			</p:accordionPanel>

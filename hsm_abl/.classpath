@@ -43,5 +43,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext7-pdfa-7.0.0-sources.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/itext7-pdftest-7.0.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/com.lowagie.text-2.1.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

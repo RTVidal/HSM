@@ -55,8 +55,8 @@ public class Curso {
         this.nome = nome;
     }
 
-    @NotEmpty(message = "Informe a descrição")
-    @Length(min = 4, max = 255, message = "A descrição deve ter entre 4 e 250 caracteres")
+    @NotEmpty(message = "Informe a descriï¿½ï¿½o")
+    @Length(min = 4, max = 255, message = "A descriï¿½ï¿½o deve ter entre 4 e 250 caracteres")
     public String getDescricao() {
         return descricao;
     }
@@ -65,8 +65,8 @@ public class Curso {
         this.descricao = descricao;
     }
 
-    @Min(value = 1, message = "A duração deve ser no mínimo 1")
-    @Max(value = 10, message = "A duração deve ser no máximo 10")
+    @Min(value = 1, message = "A duraï¿½ï¿½o deve ser no mï¿½nimo 1")
+    @Max(value = 10, message = "A duraï¿½ï¿½o deve ser no mï¿½ximo 10")
     public double getDuracao() {
         return duracao;
     }
@@ -84,13 +84,18 @@ public class Curso {
         this.tipo = tipo;
     }
 
-    @NotNull(message = "Selecione a data de criação")
-    @Past(message = "A data de criação não pode ser superior a hoje")
+    @NotNull(message = "Selecione a data de criaï¿½ï¿½o")
+    @Past(message = "A data de criaÃ§Ã£o nÃ£o pode ser superior a hoje")
     public Date getDataCriacao() {
         return dataCriacao;
     }
 
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+    
+    public String ObterImagem()
+    {
+    	return "./Resources/Images/" + nome.toLowerCase().replaceAll("Ã£", "a").replaceAll("Ã©", "e").replace(" ", "-").concat(".png");
     }
 }
