@@ -27,45 +27,57 @@ import javax.faces.context.FacesContext;
 public class CursoBean {
 
     private Curso curso;
-    private List<TipoCurso> tipos = Arrays.asList(TipoCurso.values());
+    private List<TipoCurso> tipos;
     private List<Curso> cursos = new ArrayList<Curso>();
     private List<Curso> cursosAccordion = new ArrayList<Curso>();
+    private Curso cursoExcluir;
     /**
      * Creates a new instance of CursoBean
      */
-    public CursoBean() {
+    
+    public void IniciarBean()
+    {
     	cursos = new CursoDAO().listarCursos();
     	cursosAccordion = new CursoDAO().listarCursosAccordion();
+    	tipos = Arrays.asList(TipoCurso.values());
+    }
+    
+    public void NovoCurso()
+    {
     	curso = new Curso();
     }
     
-    public String Salvar()
+    public void Salvar() throws Exception
     {
+    	Thread.sleep(2000);
+    	
         new CursoDAO().Salvar(curso);
         
         cursos = new CursoDAO().listarCursos();
-        curso = new Curso();
+        curso = null;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso salvo com sucesso!"));
-        
-        return "curso_lista?faces-redirect=true";
     }
     
-    public String Editar(Curso curso)
+    public void Editar(Curso curso)
     {
     	this.curso = curso;
-    	return "curso_formulario?faces-redirect=true";
     }
     
     public void PrepararExclusao(Curso curso)
     {
-    	this.curso = curso;
+    	this.cursoExcluir = curso;
     }
     
     public void Excluir()
     {
-    	new CursoDAO().Excluir(curso);
+    	new CursoDAO().Excluir(cursoExcluir);
     	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso excluído com sucesso!"));
     	cursos = new CursoDAO().listarCursos();    	
+    }    
+    
+    public void Voltar()
+    {
+    	curso = null;
     }
     
     public String getDataAtual()
@@ -104,7 +116,13 @@ public class CursoBean {
 	public void setCursosAccordion(List<Curso> cursosAccordion) {
 		this.cursosAccordion = cursosAccordion;
 	}
-    
-    
+
+	public Curso getCursoExcluir() {
+		return cursoExcluir;
+	}
+
+	public void setCursoExcluir(Curso cursoExcluir) {
+		this.cursoExcluir = cursoExcluir;
+	}    
 }
 

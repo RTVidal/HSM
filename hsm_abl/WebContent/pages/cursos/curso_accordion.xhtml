@@ -21,7 +21,7 @@
 				<c:forEach items="#{cursoBean.cursosAccordion}" var="curso">
 					<p:tab title="#{curso.nome}">
 						<h:panelGrid columns="2" cellpadding="10">
-							<p:graphicImage value="#{curso.ObterImagem()}" />
+							<p:graphicImage library="images" name="#{curso.ObterImagem()}" />
 							<h:outputText value="#{curso.descricao}" />
 						</h:panelGrid>
 					</p:tab>

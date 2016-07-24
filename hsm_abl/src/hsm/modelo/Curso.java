@@ -55,8 +55,8 @@ public class Curso {
         this.nome = nome;
     }
 
-    @NotEmpty(message = "Informe a descri��o")
-    @Length(min = 4, max = 255, message = "A descri��o deve ter entre 4 e 250 caracteres")
+    @NotEmpty(message = "Informe a descrição")
+    @Length(min = 4, max = 255, message = "A descrição deve ter entre 4 e 250 caracteres")
     public String getDescricao() {
         return descricao;
     }
@@ -65,8 +65,8 @@ public class Curso {
         this.descricao = descricao;
     }
 
-    @Min(value = 1, message = "A dura��o deve ser no m�nimo 1")
-    @Max(value = 10, message = "A dura��o deve ser no m�ximo 10")
+    @Min(value = 1, message = "A duração deve ser no mínimo 1")
+    @Max(value = 10, message = "A duração deve ser no máximo 10")
     public double getDuracao() {
         return duracao;
     }
@@ -84,7 +84,7 @@ public class Curso {
         this.tipo = tipo;
     }
 
-    @NotNull(message = "Selecione a data de cria��o")
+    @NotNull(message = "Selecione a data de criação")
     @Past(message = "A data de criação não pode ser superior a hoje")
     public Date getDataCriacao() {
         return dataCriacao;
@@ -96,6 +96,7 @@ public class Curso {
     
     public String ObterImagem()
     {
-    	return "./Resources/Images/" + nome.toLowerCase().replaceAll("ã", "a").replaceAll("é", "e").replace(" ", "-").concat(".png");
+    	return nome.toLowerCase().replaceAll("ã", "a").replaceAll("é", "e").replace(" ", "-").concat(".png");
+    	//return "./Resources/Images/" + nome.toLowerCase().replaceAll("ã", "a").replaceAll("é", "e").replace(" ", "-").concat(".png");
     }
 }
