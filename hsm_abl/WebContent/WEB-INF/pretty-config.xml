@@ -15,5 +15,11 @@
 		<view-id value="/pages/cursos/curso_wrapper.xhtml"/>
 		<action onPostback="false">#{cursoBean.IniciarBean}</action>
 	</url-mapping>
-                      
+    
+    <url-mapping id="alunomanutencao">
+		<pattern value="/aluno/manutencao/"/>
+		<view-id value="/pages/alunos/aluno_wrapper.xhtml"/>
+		<action onPostback="false">#{alunoBean.IniciarBean}</action>
+	</url-mapping>
+     
 </pretty-config>

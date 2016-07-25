@@ -23,6 +23,7 @@ public class Aluno implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6304857369913761303L;
+	
 	private Integer id;
 	private String nome;
 	private Date dataNascimento;

@@ -8,6 +8,8 @@ package hsm.bean;
 import hsm.modelo.Curso;
 import hsm.modelo.TipoCurso;
 import hsm.dao.CursoDAO;
+import hsm.dao.GenericDAO;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +39,8 @@ public class CursoBean {
     
     public void IniciarBean()
     {
-    	cursos = new CursoDAO().listarCursos();
+    	//cursos = new CursoDAO().listarCursos();
+    	cursos = new GenericDAO<Curso>(Curso.class).listarTodos();
     	cursosAccordion = new CursoDAO().listarCursosAccordion();
     	tipos = Arrays.asList(TipoCurso.values());
     }
@@ -51,9 +54,11 @@ public class CursoBean {
     {
     	Thread.sleep(2000);
     	
-        new CursoDAO().Salvar(curso);
+    	new GenericDAO<Curso>(Curso.class).Salvar(curso);
+        //new CursoDAO().Salvar(curso);
         
-        cursos = new CursoDAO().listarCursos();
+    	cursos = new GenericDAO<Curso>(Curso.class).listarTodos();
+        //cursos = new CursoDAO().listarCursos();
         curso = null;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso salvo com sucesso!"));
     }
