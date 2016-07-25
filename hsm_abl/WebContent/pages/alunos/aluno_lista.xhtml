@@ -5,10 +5,29 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-	<p:panel header = "Alunos Cadastrados" rendered="#{alunoBean.aluno == null}">
-		<p:commandButton value="Novo Aluno" icon="adicionar-icon" action="#{alunoBean.NovoAluno()}" update="aluno_form"/>
-	</p:panel>
-	
+<p:panel header="Alunos Cadastrados"
+	rendered="#{alunoBean.aluno == null}">
+	<p:commandButton value="Novo Aluno" icon="adicionar-icon"
+		action="#{alunoBean.NovoAluno()}" update="aluno_form" />
 
+	<br />
+	<p:dataTable value="#{alunoBean.alunos}" var="aluno">
+		<p:column headerText="Nome">
+			<h:outputText value="#{aluno.nome}" />
+		</p:column>
+		<p:column headerText="CPF">
+			<h:outputText value="#{aluno.cpf}" />
+		</p:column>
+		<p:column headerText="E-mail">
+			<h:outputText value="#{aluno.email}" />
+		</p:column>
+		<p:column headerText="Data Nascimento">
+			<h:outputText value="#{aluno.dataNascimento}" />
+		</p:column>
+		<p:column headerText="Ativo">
+			<h:outputText value="#{aluno.ativo}" />
+		</p:column>
+	</p:dataTable>
+</p:panel>
 </html>
 
