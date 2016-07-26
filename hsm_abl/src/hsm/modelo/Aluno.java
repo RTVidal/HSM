@@ -32,6 +32,7 @@ public class Aluno implements Serializable {
 	private String email;
 	private boolean ativo;
 	private String telefone;
+	private Endereco endereco;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -96,5 +97,17 @@ public class Aluno implements Serializable {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

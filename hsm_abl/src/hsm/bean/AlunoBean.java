@@ -1,6 +1,9 @@
 package hsm.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -49,7 +52,14 @@ public class AlunoBean implements Serializable{
 		this.aluno = null;
 	}
 	
-	public Aluno getAluno() {
+	public String getDataAtual()
+	{
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.YEAR, -6);
+		return new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+	}
+	
+	public Aluno getAluno() {		
 		return aluno;
 	}
 	public void setAluno(Aluno aluno) {
