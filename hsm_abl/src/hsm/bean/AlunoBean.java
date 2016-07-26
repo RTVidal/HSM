@@ -5,14 +5,14 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import hsm.dao.GenericDAO;
 import hsm.modelo.Aluno;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class AlunoBean implements Serializable{
 
 	private static final long serialVersionUID = -8991739415667347069L;
@@ -41,6 +41,7 @@ public class AlunoBean implements Serializable{
 	public void Editar(Aluno aluno)
 	{
 		this.aluno = aluno;
+		
 	}
 	
 	public void Voltar()

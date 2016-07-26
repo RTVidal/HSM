@@ -5,6 +5,7 @@
  */
 package hsm.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -26,9 +27,11 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author Rafael
  */
 @Entity
-public class Curso {
-
-    @Id
+public class Curso implements Serializable{
+    
+	private static final long serialVersionUID = -5096984551772988025L;
+	
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nome;

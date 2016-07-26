@@ -5,33 +5,38 @@
  */
 package hsm.bean;
 
-import hsm.modelo.Curso;
-import hsm.modelo.TipoCurso;
-import hsm.dao.CursoDAO;
-import hsm.dao.GenericDAO;
-
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import hsm.dao.CursoDAO;
+import hsm.dao.GenericDAO;
+import hsm.modelo.Curso;
+import hsm.modelo.TipoCurso;
 
 /**
  *
  * @author Rafael
  */
 @ManagedBean
-@SessionScoped
-public class CursoBean {
-
-    private Curso curso;
+@ViewScoped
+public class CursoBean implements Serializable{
+	
+	private static final long serialVersionUID = 2238454125561714010L;
+	
+	private Curso curso;
     private List<TipoCurso> tipos;
     private List<Curso> cursos = new ArrayList<Curso>();
     private List<Curso> cursosAccordion = new ArrayList<Curso>();
+    private List<Curso> cursosFiltrados;
     private Curso cursoExcluir;
     /**
      * Creates a new instance of CursoBean
@@ -77,7 +82,8 @@ public class CursoBean {
     {
     	new CursoDAO().Excluir(cursoExcluir);
     	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso excluído com sucesso!"));
-    	cursos = new CursoDAO().listarCursos();    	
+    	cursos = new CursoDAO().listarCursos();    
+    	cursosFiltrados = null;
     }    
     
     public void Voltar()
@@ -128,6 +134,14 @@ public class CursoBean {
 
 	public void setCursoExcluir(Curso cursoExcluir) {
 		this.cursoExcluir = cursoExcluir;
-	}    
+	}
+
+	public List<Curso> getCursosFiltrados() {
+		return cursosFiltrados;
+	}
+
+	public void setCursosFiltrados(List<Curso> cursosFiltrados) {
+		this.cursosFiltrados = cursosFiltrados;
+	}
 }
 
