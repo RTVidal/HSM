@@ -40,16 +40,31 @@
 				<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
 				<f:selectItems value="#{alunoBean.estados}" var="estado"
 					itemLabel="#{estado.descricao}" itemValue="#{estado}" />
+				<p:ajax event="change" update="combo-cidades-group label-cidades-group" />
 			</p:selectOneMenu>
-			<h:outputText value="Cidade: " />
-			<p:selectOneMenu value="#{alunoBean.aluno.endereco.cidade}">
-				<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
-				<f:selectItems value="#{alunoBean.cidadesDoEstado}" var="cidade"
-					itemLabel="#{cidade.nome}" itemValue="#{cidade.id}"/>
-				<p:ajax event=""></p:ajax>
-			</p:selectOneMenu>
-
-
+			<h:panelGroup id="label-cidades-group">
+				<h:outputText value="Cidade" />
+			</h:panelGroup>
+			
+			<!--<h:panelGroup id="combo-cidades-group">
+				<p:selectOneMenu id="combo-cidades"
+					value="#{alunoBean.aluno.endereco.cidade}"
+					rendered="#{alunoBean.aluno. endereco.cidade.estado != null}">
+					<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
+					<f:selectItems value="#{alunoBean.cidadesDoEstado}" var="cidade"
+						itemLabel="#{cidade.nome}" itemValue="#{cidade.id}" />
+				</p:selectOneMenu>
+			</h:panelGroup>-->
+			
+				<p:selectOneMenu id="combo-cidades"
+					value="#{alunoBean.aluno.endereco.cidade}"
+					disabled="#{alunoBean.aluno. endereco.cidade.estado == null}">
+					<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
+					<f:selectItems value="#{alunoBean.cidadesDoEstado}" var="cidade"
+						itemLabel="#{cidade.nome}" itemValue="#{cidade.id}" />
+				</p:selectOneMenu>
+			</h:panelGroup>
+			
 		</p:panelGrid>
 	</p:panel>
 	<br />
