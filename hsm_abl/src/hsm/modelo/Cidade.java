@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -19,6 +20,16 @@ public class Cidade implements Serializable {
 	private Integer id;
 	private String nome;
 	private Estado estado;
+	
+	public Cidade() {
+
+	}
+	
+	public Cidade(String nome, Estado estado) {
+		super();
+		this.nome = nome;
+		this.estado = estado;
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,6 +49,7 @@ public class Cidade implements Serializable {
 	}
 	
 	@Enumerated(EnumType.STRING)
+	@NotNull(message = "Selecione o Estado")
 	public Estado getEstado() {
 		return estado;
 	}

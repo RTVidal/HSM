@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,7 +33,7 @@ public class Aluno implements Serializable {
 	private String email;
 	private boolean ativo;
 	private String telefone;
-	private Endereco endereco;
+	private Endereco endereco = new Endereco();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -99,6 +100,7 @@ public class Aluno implements Serializable {
 		this.telefone = telefone;
 	}
 
+	@Embedded
 	public Endereco getEndereco() {
 		return endereco;
 	}

@@ -1,6 +1,8 @@
 package hsm.modelo;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -10,7 +12,7 @@ public class Endereco {
 	private String logradouro;
 	private Integer numero;
 	private String CEP;
-	private Cidade cidade;
+	private Cidade cidade = new Cidade();
 	
 	@NotEmpty(message = "Informe o logradouro")
 	public String getLogradouro() {
@@ -35,6 +37,9 @@ public class Endereco {
 	public void setCEP(String cEP) {
 		CEP = cEP;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "id_cidade")
 	public Cidade getCidade() {
 		return cidade;
 	}

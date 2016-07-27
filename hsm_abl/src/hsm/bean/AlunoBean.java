@@ -2,8 +2,8 @@ package hsm.bean;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -11,8 +11,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import hsm.dao.CidadeDAO;
 import hsm.dao.GenericDAO;
 import hsm.modelo.Aluno;
+import hsm.modelo.Cidade;
+import hsm.modelo.Estado;
 
 @ManagedBean
 @ViewScoped
@@ -22,10 +25,12 @@ public class AlunoBean implements Serializable{
 	
 	private Aluno aluno;
 	private List<Aluno> alunos;
+	private List<Estado> estados;
 	
 	public void IniciarBean()
 	{
 		alunos = new GenericDAO<Aluno>(Aluno.class).listarTodos();
+		estados = Arrays.asList(Estado.values());
 	}
 	
 	public void NovoAluno()
@@ -59,6 +64,11 @@ public class AlunoBean implements Serializable{
 		return new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
 	}
 	
+	public List<Cidade> getCidadesDoEstado()
+	{
+		return CidadeDAO.ObterCidadesDoEstado(aluno.getEndereco().getCidade().getEstado());
+	}
+	
 	public Aluno getAluno() {		
 		return aluno;
 	}
@@ -73,6 +83,14 @@ public class AlunoBean implements Serializable{
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<Estado> getEstados() {
+		return estados;
+	}
+
+	public void setEstados(List<Estado> estados) {
+		this.estados = estados;
 	}
 	
 }
