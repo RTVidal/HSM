@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelats">
 
 <p:panel header="Cadastro de Alunos"
 	rendered="#{alunoBean.aluno != null}">
@@ -21,7 +22,7 @@
 			<p:inputText value="#{alunoBean.aluno.email}" size="20" />
 			<h:outputText value="Telefone: " />
 			<p:inputMask value="#{alunoBean.aluno.telefone}"
-				mask="(99)9?9999-9999" size="12" />
+				mask="(99)9?9999-9999" size="12" placeholder="" />
 			<h:outputText value="Ativo: " />
 			<p:selectBooleanCheckbox value="#{alunoBean.aluno.ativo}" />
 		</p:panelGrid>
@@ -40,31 +41,21 @@
 				<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
 				<f:selectItems value="#{alunoBean.estados}" var="estado"
 					itemLabel="#{estado.descricao}" itemValue="#{estado}" />
-				<p:ajax event="change" update="combo-cidades-group label-cidades-group" />
+				<p:ajax event="change"
+					update="combo-cidades label-cidades-group" />
 			</p:selectOneMenu>
 			<h:panelGroup id="label-cidades-group">
 				<h:outputText value="Cidade" />
 			</h:panelGroup>
-			
-			<!--<h:panelGroup id="combo-cidades-group">
-				<p:selectOneMenu id="combo-cidades"
-					value="#{alunoBean.aluno.endereco.cidade}"
-					rendered="#{alunoBean.aluno. endereco.cidade.estado != null}">
-					<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
-					<f:selectItems value="#{alunoBean.cidadesDoEstado}" var="cidade"
-						itemLabel="#{cidade.nome}" itemValue="#{cidade.id}" />
-				</p:selectOneMenu>
-			</h:panelGroup>-->
-			
-				<p:selectOneMenu id="combo-cidades"
-					value="#{alunoBean.aluno.endereco.cidade}"
-					disabled="#{alunoBean.aluno. endereco.cidade.estado == null}">
-					<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
-					<f:selectItems value="#{alunoBean.cidadesDoEstado}" var="cidade"
-						itemLabel="#{cidade.nome}" itemValue="#{cidade.id}" />
-				</p:selectOneMenu>
-			</h:panelGroup>
-			
+
+			<p:selectOneMenu id="combo-cidades"
+				value="#{alunoBean.idCidade}"
+				disabled="#{alunoBean.aluno. endereco.cidade.estado == null}">
+				<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
+				<f:selectItems value="#{alunoBean.cidadesDoEstado}" var="cidade"
+					itemLabel="#{cidade.nome}" itemValue="#{cidade.id}" />
+			</p:selectOneMenu>
+
 		</p:panelGrid>
 	</p:panel>
 	<br />

@@ -3,8 +3,10 @@ package hsm.modelo;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
 
 @Embeddable
 public class Endereco {
@@ -22,7 +24,7 @@ public class Endereco {
 		this.logradouro = logradouro;
 	}
 	
-	@NotEmpty(message = "Informe o número")
+	@NotNull(message = "Informe o número!")
 	public Integer getNumero() {
 		return numero;
 	}

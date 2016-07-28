@@ -26,6 +26,7 @@ public class AlunoBean implements Serializable{
 	private Aluno aluno;
 	private List<Aluno> alunos;
 	private List<Estado> estados;
+	private Integer idCidade;
 	
 	public void IniciarBean()
 	{
@@ -40,6 +41,8 @@ public class AlunoBean implements Serializable{
 	
 	public void Salvar()
 	{
+		aluno.getEndereco().setCidade(new GenericDAO<Cidade>(Cidade.class).ObterPorID(idCidade));
+		
 		new GenericDAO<Aluno>(Aluno.class).Salvar(aluno);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aluno cadastrado com sucesso!"));
 		alunos = new GenericDAO<Aluno>(Aluno.class).listarTodos();
@@ -92,5 +95,12 @@ public class AlunoBean implements Serializable{
 	public void setEstados(List<Estado> estados) {
 		this.estados = estados;
 	}
-	
+
+	public Integer getIdCidade() {
+		return idCidade;
+	}
+
+	public void setIdCidade(Integer idCidade) {
+		this.idCidade = idCidade;
+	}
 }
