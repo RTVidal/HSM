@@ -15,10 +15,18 @@ import javax.persistence.Persistence;
  */
 public class JPAUtil {
     
+	public static EntityManagerFactory factory;
+	
     public static EntityManager getEntityManager()
     {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("escola_musica");
+        factory = Persistence.createEntityManagerFactory("escola_musica");
         
         return factory.createEntityManager();
     }
+    
+    public static void fecharConexao()
+    {
+    	factory.close();
+    }
+
 }

@@ -11,6 +11,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.io.IOUtils;
+import org.primefaces.event.FileUploadEvent;
+
 import hsm.dao.CidadeDAO;
 import hsm.dao.GenericDAO;
 import hsm.modelo.Aluno;
@@ -26,7 +29,6 @@ public class AlunoBean implements Serializable{
 	private Aluno aluno;
 	private List<Aluno> alunos;
 	private List<Estado> estados;
-	private Integer idCidade;
 	
 	public void IniciarBean()
 	{
@@ -40,9 +42,7 @@ public class AlunoBean implements Serializable{
 	}
 	
 	public void Salvar()
-	{
-		aluno.getEndereco().setCidade(new GenericDAO<Cidade>(Cidade.class).ObterPorID(idCidade));
-		
+	{		
 		new GenericDAO<Aluno>(Aluno.class).Salvar(aluno);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aluno cadastrado com sucesso!"));
 		alunos = new GenericDAO<Aluno>(Aluno.class).listarTodos();
@@ -53,6 +53,10 @@ public class AlunoBean implements Serializable{
 	{
 		this.aluno = aluno;
 		
+		if(aluno.getEndereco().getCidade() == null)
+		{
+			aluno.getEndereco().setCidade(new Cidade());
+		}
 	}
 	
 	public void Voltar()
@@ -70,6 +74,17 @@ public class AlunoBean implements Serializable{
 	public List<Cidade> getCidadesDoEstado()
 	{
 		return CidadeDAO.ObterCidadesDoEstado(aluno.getEndereco().getCidade().getEstado());
+	}
+	
+	public void EnviarFoto(FileUploadEvent event)
+	{
+		try {
+			byte[] foto = IOUtils.toByteArray(event.getFile().getInputstream());
+			
+			aluno.setFoto(foto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public Aluno getAluno() {		
@@ -94,13 +109,5 @@ public class AlunoBean implements Serializable{
 
 	public void setEstados(List<Estado> estados) {
 		this.estados = estados;
-	}
-
-	public Integer getIdCidade() {
-		return idCidade;
-	}
-
-	public void setIdCidade(Integer idCidade) {
-		this.idCidade = idCidade;
 	}
 }

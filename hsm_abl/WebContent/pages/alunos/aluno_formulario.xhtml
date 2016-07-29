@@ -44,16 +44,17 @@
 				<p:ajax event="change"
 					update="combo-cidades label-cidades-group" />
 			</p:selectOneMenu>
+			
 			<h:panelGroup id="label-cidades-group">
-				<h:outputText value="Cidade" />
+				<h:outputText value="Cidade:" />
 			</h:panelGroup>
-
 			<p:selectOneMenu id="combo-cidades"
-				value="#{alunoBean.idCidade}"
-				disabled="#{alunoBean.aluno. endereco.cidade.estado == null}">
+				value="#{alunoBean.aluno.endereco.cidade}"
+				disabled="#{alunoBean.aluno. endereco.cidade.estado == null}"
+				converter="cidadeEntityConverter">
 				<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
 				<f:selectItems value="#{alunoBean.cidadesDoEstado}" var="cidade"
-					itemLabel="#{cidade.nome}" itemValue="#{cidade.id}" />
+					itemLabel="#{cidade.nome}" itemValue="#{cidade}" />
 			</p:selectOneMenu>
 
 		</p:panelGrid>
