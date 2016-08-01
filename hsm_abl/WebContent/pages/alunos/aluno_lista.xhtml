@@ -15,9 +15,19 @@
 		rows="10" rowsPerPageTemplate="5 10 15"
 		paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}
 			{RowsPerPageDropdown}">
+
 		<p:column headerText="Nome" style="width:300px">
-			<h:outputText value="#{aluno.nome}" />
+			<h:outputLink id="foto" value="#">
+				<h:outputText value="#{aluno.nome}" />
+			</h:outputLink>
+			<p:tooltip id="toolTipFoto" for="foto" rendered="#{aluno.foto != null}">
+				<p:graphicImage value="#{alunoBean.imagemAluno}" width="180"
+					height="180" cache="false">
+					<f:param name="id_aluno" value="#{aluno.id}" />
+				</p:graphicImage>
+			</p:tooltip>
 		</p:column>
+
 		<p:column headerText="CPF" style="width:120px">
 			<h:outputText value="#{aluno.cpf}" />
 		</p:column>

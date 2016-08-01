@@ -22,7 +22,7 @@ public class GenericDAO<T> {
 		em.getTransaction().commit();
 			
 		em.close();
-		JPAUtil.fecharConexao();
+		//JPAUtil.fecharConexao();
 	}
 
 	public void Excluir(T t) {
@@ -35,7 +35,7 @@ public class GenericDAO<T> {
 		em.getTransaction().commit();
 
 		em.close();
-		JPAUtil.fecharConexao();
+		//JPAUtil.fecharConexao();
 	}
 	
 	public List<T> listarTodos()
@@ -45,7 +45,7 @@ public class GenericDAO<T> {
 		List<T> resultados = em.createQuery("select c from " + classe.getName() + " c", classe).getResultList();
 		
 		em.close();
-		JPAUtil.fecharConexao();
+		//JPAUtil.fecharConexao();
 		
 		return resultados;
 	}
@@ -57,7 +57,7 @@ public class GenericDAO<T> {
 		T t = em.createQuery("from " + classe.getName() + " where id = :id", classe).setParameter("id", id).getSingleResult();
 		
 		em.close();
-		JPAUtil.fecharConexao();
+		//JPAUtil.fecharConexao();
 		
 		return t;
 	}

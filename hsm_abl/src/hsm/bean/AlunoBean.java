@@ -5,14 +5,17 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import hsm.dao.CidadeDAO;
 import hsm.dao.GenericDAO;
@@ -21,7 +24,7 @@ import hsm.modelo.Cidade;
 import hsm.modelo.Estado;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class AlunoBean implements Serializable{
 
 	private static final long serialVersionUID = -8991739415667347069L;
@@ -85,6 +88,19 @@ public class AlunoBean implements Serializable{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public StreamedContent getImagemAluno()
+	{
+		Map<String, String> mapaParametros = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		String idAluno = mapaParametros.get("id_aluno");
+		if (idAluno != null)
+		{
+			Aluno alunoBanco = new GenericDAO<Aluno>(Aluno.class).ObterPorID(Integer.parseInt(idAluno));
+			return alunoBanco.getImagem();
+		}
+		
+		return new DefaultStreamedContent();
 	}
 	
 	public Aluno getAluno() {		
