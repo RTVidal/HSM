@@ -20,11 +20,12 @@
 			<h:outputLink id="foto" value="#">
 				<h:outputText value="#{aluno.nome}" />
 			</h:outputLink>
-			<p:tooltip id="toolTipFoto" for="foto" rendered="#{aluno.foto != null}">
+			<p:tooltip id="toolTipFoto" for="foto">
 				<p:graphicImage value="#{alunoBean.imagemAluno}" width="180"
-					height="180" cache="false">
+					height="180" cache="false" rendered="#{aluno.foto != null}">
 					<f:param name="id_aluno" value="#{aluno.id}" />
 				</p:graphicImage>
+				<h:outputText value="Sem foto" rendered="#{aluno.foto == null}"/>
 			</p:tooltip>
 		</p:column>
 
