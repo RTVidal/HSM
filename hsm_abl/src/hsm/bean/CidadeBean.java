@@ -22,8 +22,9 @@ public class CidadeBean implements Serializable {
 	 */
 	private static final long serialVersionUID = 4640543846520409548L;
 	
-	private Cidade cidade;
+	private Cidade cidade = new Cidade();
 	private List<Cidade> cidades;
+	private Cidade cidadeSelecionada;
 	
 	public void IniciarBean()
 	{
@@ -34,9 +35,10 @@ public class CidadeBean implements Serializable {
 	{
 		new GenericDAO<Cidade>(Cidade.class).Salvar(cidade);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cidade cadastrada com sucesso!"));
-		cidade = null;
-		
+		cidade = new Cidade();	
+		cidadeSelecionada = null;
 		Consultar();
+		//RequestContext.getCurrentInstance().execute("PF('cadastroCidadeDialog').hide()");
 	}
 	
 	public void NovaCidade()
@@ -44,9 +46,15 @@ public class CidadeBean implements Serializable {
 		cidade = new Cidade();
 	}
 	
+	public void cancelar()
+	{
+		cidade = new Cidade();
+		cidadeSelecionada = null;
+	}
+	
 	public void Consultar()
 	{
-		
+		cidades = new GenericDAO<Cidade>(Cidade.class).listarTodos();
 	}
 	
 	public List<Estado> getEstados()
@@ -73,7 +81,13 @@ public class CidadeBean implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
+	public Cidade getCidadeSelecionada() {
+		return cidadeSelecionada;
+	}
+
+	public void setCidadeSelecionada(Cidade cidadeSelecionada) {
+		this.cidadeSelecionada = cidadeSelecionada;
+	}
 
 }
