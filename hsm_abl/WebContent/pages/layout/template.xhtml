@@ -7,18 +7,19 @@
 <h:head>
 	<title>Escola Música - <ui:insert name="titulo" /></title>
 	<meta charset="utf-8" />
-	<link href="#{request.contextPath}/css/tema.css" rel="stylesheet"/>
+	<ui:insert name="header" />
+	<link href="#{request.contextPath}/css/tema.css" rel="stylesheet" />
 </h:head>
 
 <h:head></h:head>
 <h:body>
 	<h:form enctype="multipart/form-data">
 		<p:menubar>
-			<p:menuitem value="Curso" url="/curso/manutencao/" icon="cursos-icon"/>
-			<p:menuitem value="Aluno" url="/aluno/manutencao/"/>
-			<p:menuitem value="Cidade" url="/cidade/manutencao/"/>
+			<p:menuitem value="Curso" url="/curso/manutencao/" icon="cursos-icon" />
+			<p:menuitem value="Aluno" url="/aluno/manutencao/" />
+			<p:menuitem value="Cidade" url="/cidade/manutencao/" />
 		</p:menubar>
 	</h:form>
-	<ui:insert name="principal"/>
+	<ui:insert name="principal" />
 </h:body>
 </html>

@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import hsm.dao.CidadeDAO;
 import hsm.dao.GenericDAO;
 import hsm.modelo.Cidade;
 import hsm.modelo.Estado;
@@ -50,6 +51,13 @@ public class CidadeBean implements Serializable {
 	{
 		cidade = new Cidade();
 		cidadeSelecionada = null;
+	}
+	
+	public void excluir()
+	{
+		new GenericDAO<Cidade>(Cidade.class).Excluir(cidadeSelecionada);
+		cidadeSelecionada = null;
+		Consultar();
 	}
 	
 	public void Consultar()

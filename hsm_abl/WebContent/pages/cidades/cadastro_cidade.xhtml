@@ -8,6 +8,9 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="titulo">Cidades</ui:define>
+	<ui:define name="header">
+		<meta charset="utf-8" />
+	</ui:define>
 
 	<ui:define name="principal">
 		<p:panel header="Cadastro de Cidades">
@@ -29,6 +32,7 @@
 							disabled="#{cidadeBean.cidadeSelecionada == null}"
 							oncomplete="PF('cadastroCidadeDialog').show()" process="@this"
 							update="cidade-dialog">
+							<p:resetInput target="cidade-dialog" />
 							<f:setPropertyActionListener
 								value="#{cidadeBean.cidadeSelecionada}"
 								target="#{cidadeBean.cidade}" />
@@ -36,7 +40,8 @@
 
 						<p:commandButton id="excluir-button" title="Excluir"
 							icon="ui-icon-trash"
-							disabled="#{cidadeBean.cidadeSelecionada == null}" />
+							disabled="#{cidadeBean.cidadeSelecionada == null}"
+							oncomplete="PF('exclusaoCidadeDialog').show()" process="@this" />
 					</f:facet>
 
 				</p:toolbar>
@@ -69,7 +74,8 @@
 						<p:inputText value="#{cidadeBean.cidade.nome}" size="30" />
 
 						<h:outputLabel value="Estado:" />
-						<p:selectOneMenu value="#{cidadeBean.cidade.estado}" style="width:200px">
+						<p:selectOneMenu value="#{cidadeBean.cidade.estado}"
+							style="width:200px">
 							<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
 							<f:selectItems value="#{cidadeBean.estados}" var="estado"
 								itemLabel="#{estado.descricao}" itemValue="#{estado}" />
@@ -84,9 +90,22 @@
 					<p:commandButton value="Cancelar" icon="ui-icon-close"
 						style="margin-left:8px"
 						oncomplete="PF('cadastroCidadeDialog').hide()" process="@this"
-						action="#{cidadeBean.cancelar}"
-						update="tabela-cidades toolbar" />
+						action="#{cidadeBean.cancelar}" update="tabela-cidades toolbar" />
 				</p:dialog>
+				<p:confirmDialog message="Deseja realmente excluir esta cidade?"
+					widgetVar="exclusaoCidadeDialog" header="Excluir Cidade">
+					<p:commandButton value="Sim" action="#{cidadeBean.excluir}"
+						process="@this" oncomplete="PF('exclusaoCidadeDialog').hide()"
+						update="toolbar tabela-cidades" />
+
+					<p:commandButton value="Não"
+						oncomplete="PF('exclusaoCidadeDialog').hide()"
+						update="toolbar tabela-cidades" process="@this">
+						<f:setPropertyActionListener value="#{null}"
+							target="#{cidadeBean.cidadeSelecionada}" />
+					</p:commandButton>
+				</p:confirmDialog>
+
 			</h:form>
 		</p:panel>
 	</ui:define>

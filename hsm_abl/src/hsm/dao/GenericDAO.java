@@ -30,7 +30,7 @@ public class GenericDAO<T> {
 
 		em.getTransaction().begin();
 
-		em.remove(t);
+		em.remove(em.merge(t));
 
 		em.getTransaction().commit();
 
