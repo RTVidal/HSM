@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.RowEditEvent;
+
 import hsm.dao.CidadeDAO;
 import hsm.dao.GenericDAO;
 import hsm.modelo.Cidade;
@@ -58,6 +60,12 @@ public class CidadeBean implements Serializable {
 		new GenericDAO<Cidade>(Cidade.class).Excluir(cidadeSelecionada);
 		cidadeSelecionada = null;
 		Consultar();
+	}
+	
+	public void onRowEdit(RowEditEvent event)
+	{
+		cidade = (Cidade)event.getObject();
+		Salvar();
 	}
 	
 	public void Consultar()
