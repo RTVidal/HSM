@@ -17,50 +17,58 @@ public class PopulaCurso {
 		EntityManager em = JPAUtil.getEntityManager();
 		em.getTransaction().begin();
 		
-		Curso violino = geraCurso("Violino", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
-		Curso viola = geraCurso("Viola", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
-		Curso violoncello = geraCurso("Violoncello", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
-		Curso contrabaixo = geraCurso("Contrabaixo", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
-		Curso violao = geraCurso("Violão", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
-		Curso guitarra = geraCurso("Guitarra", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
-		Curso flauta = geraCurso("Flauta", getDescricao(), "01/02/2014", 4, TipoCurso.MADEIRAS);
-		Curso clarinete = geraCurso("Clarinete", getDescricao(), "01/02/2014", 4, TipoCurso.MADEIRAS);
-		Curso oboe = geraCurso("Oboé", getDescricao(), "01/02/2014", 5, TipoCurso.MADEIRAS);
-		Curso fagote = geraCurso("Fagote", getDescricao(), "01/02/2014", 5, TipoCurso.MADEIRAS);
-		Curso saxofone = geraCurso("Saxofone", getDescricao(), "01/02/2014", 5, TipoCurso.MADEIRAS);
-		Curso clarone = geraCurso("Clarone", getDescricao(), "01/02/2014", 5, TipoCurso.MADEIRAS);
-		Curso trompete = geraCurso("Trompete", getDescricao(), "04/02/2014", 6, TipoCurso.METAIS);
-		Curso trompa = geraCurso("Trompa", getDescricao(), "04/01/2014", 6, TipoCurso.METAIS);
-		Curso trombone = geraCurso("Trobone", getDescricao(), "04/01/2014", 6, TipoCurso.METAIS);
-		Curso tuba = geraCurso("Tuba", getDescricao(), "04/01/2014", 6, TipoCurso.METAIS);
-		Curso bateria = geraCurso("Bateria", getDescricao(), "22/01/2014", 3, TipoCurso.PERCURSSAO);
-		Curso xilofone = geraCurso("Xilofone", getDescricao(), "22/01/2014", 3, TipoCurso.PERCURSSAO);
-		Curso caixa = geraCurso("Caixa", getDescricao(), "22/01/2014", 3, TipoCurso.PERCURSSAO);
-		Curso bumbo = geraCurso("Bumbo", getDescricao(), "22/01/2014", 3, TipoCurso.PERCURSSAO);
+		//for(int i = 0; i < 5000; i++)
+		//{
+			Curso violino = geraCurso("Violino", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
+			Curso viola = geraCurso("Viola", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
+			Curso violoncello = geraCurso("Violoncello", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
+			Curso contrabaixo = geraCurso("Contrabaixo", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
+			Curso violao = geraCurso("Violão", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
+			Curso guitarra = geraCurso("Guitarra", getDescricao(), "01/01/2014", 4, TipoCurso.CORDAS);
+			Curso flauta = geraCurso("Flauta", getDescricao(), "01/02/2014", 4, TipoCurso.MADEIRAS);
+			Curso clarinete = geraCurso("Clarinete", getDescricao(), "01/02/2014", 4, TipoCurso.MADEIRAS);
+			Curso oboe = geraCurso("Oboé", getDescricao(), "01/02/2014", 5, TipoCurso.MADEIRAS);
+			Curso fagote = geraCurso("Fagote", getDescricao(), "01/02/2014", 5, TipoCurso.MADEIRAS);
+			Curso saxofone = geraCurso("Saxofone", getDescricao(), "01/02/2014", 5, TipoCurso.MADEIRAS);
+			Curso clarone = geraCurso("Clarone", getDescricao(), "01/02/2014", 5, TipoCurso.MADEIRAS);
+			Curso trompete = geraCurso("Trompete", getDescricao(), "04/02/2014", 6, TipoCurso.METAIS);
+			Curso trompa = geraCurso("Trompa", getDescricao(), "04/01/2014", 6, TipoCurso.METAIS);
+			Curso trombone = geraCurso("Trobone", getDescricao(), "04/01/2014", 6, TipoCurso.METAIS);
+			Curso tuba = geraCurso("Tuba", getDescricao(), "04/01/2014", 6, TipoCurso.METAIS);
+			Curso bateria = geraCurso("Bateria", getDescricao(), "22/01/2014", 3, TipoCurso.PERCURSSAO);
+			Curso xilofone = geraCurso("Xilofone", getDescricao(), "22/01/2014", 3, TipoCurso.PERCURSSAO);
+			Curso caixa = geraCurso("Caixa", getDescricao(), "22/01/2014", 3, TipoCurso.PERCURSSAO);
+			Curso bumbo = geraCurso("Bumbo", getDescricao(), "22/01/2014", 3, TipoCurso.PERCURSSAO);
+			
+			em.persist(violino);
+			em.persist(viola);
+			em.persist(violoncello);
+			em.persist(contrabaixo);
+			em.persist(violao);
+			em.persist(guitarra);
+			em.persist(flauta);
+			em.persist(clarinete);
+			em.persist(oboe);
+			em.persist(fagote);
+			em.persist(clarone);
+			em.persist(saxofone);
+			em.persist(trompete);
+			em.persist(trompa);
+			em.persist(trombone);
+			em.persist(tuba);
+			em.persist(bateria);
+			em.persist(xilofone);
+			em.persist(caixa);
+			em.persist(bumbo);
+			
+			em.getTransaction().commit();
+			em.close();
+		//}
 		
-		em.persist(violino);
-		em.persist(viola);
-		em.persist(violoncello);
-		em.persist(contrabaixo);
-		em.persist(violao);
-		em.persist(guitarra);
-		em.persist(flauta);
-		em.persist(clarinete);
-		em.persist(oboe);
-		em.persist(fagote);
-		em.persist(clarone);
-		em.persist(saxofone);
-		em.persist(trompete);
-		em.persist(trompa);
-		em.persist(trombone);
-		em.persist(tuba);
-		em.persist(bateria);
-		em.persist(xilofone);
-		em.persist(caixa);
-		em.persist(bumbo);
 		
-		em.getTransaction().commit();
-		em.close();
+		
+		
+		
 	}
 	
 	private static String getDescricao() {

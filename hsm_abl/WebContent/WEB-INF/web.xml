@@ -12,6 +12,12 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -21,7 +27,7 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-	
+
 	<filter>
 		<filter-name>Pretty Filter</filter-name>
 		<filter-class>com.ocpsoft.pretty.PrettyFilter</filter-class>
@@ -54,7 +60,7 @@
 		<param-name>primefaces.THEME</param-name>
 		<param-value>afternoon</param-value>
 	</context-param>
-	
+
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<param-value>Development</param-value>

@@ -46,6 +46,7 @@
 					</f:facet>
 
 				</p:toolbar>
+
 				<br />
 				<p:dataTable id="tabela-cidades" value="#{cidadeBean.cidades}"
 					var="cidade" style="width:50%" paginator="true" rows="25"
@@ -53,11 +54,17 @@
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}
 										{RowsPerPageDropdown}"
 					selection="#{cidadeBean.cidadeSelecionada}" selectionMode="single"
-					rowKey="#{cidade.id}" editable="true">
+					rowKey="#{cidade.id}" editable="true" widgetVar="cellCidades"
+					editMode="cell">
 
 					<p:ajax event="rowSelect" update=":form-cidade:toolbar" />
+
 					<p:ajax event="rowUnselect" update=":form-cidade:toolbar" />
+
 					<p:ajax event="rowEdit" listener="#{cidadeBean.onRowEdit}"
+						update="tabela-cidades form-cidade:msgs" />
+
+					<p:ajax event="cellEdit" listener="#{cidadeBean.onCellEdit}"
 						update="tabela-cidades form-cidade:msgs" />
 
 					<p:column headerText="Nome" filterBy="#{cidade.nome}"
@@ -77,10 +84,10 @@
 							<f:facet name="output">
 								<h:outputText value="#{cidade.estado.descricao}" />
 							</f:facet>
-							
+
 							<f:facet name="input">
-								<p:selectOneMenu value="#{cidade.estado}"
-									style="width:200px" filter="true" filterMatchMode="contains">
+								<p:selectOneMenu value="#{cidade.estado}" style="width:200px"
+									filter="true" filterMatchMode="contains">
 									<f:selectItem itemLabel="(Selecione)" itemValue="#{null}" />
 									<f:selectItems value="#{cidadeBean.estados}" var="estado"
 										itemLabel="#{estado.descricao}" itemValue="#{estado}" />
