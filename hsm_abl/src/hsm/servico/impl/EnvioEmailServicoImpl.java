@@ -9,8 +9,8 @@ import hsm.servico.EnvioEmailServico;
 public class EnvioEmailServicoImpl implements EnvioEmailServico {
 
 	@Override
-	@Scheduled(fixedDelay = 5000)
+	@Scheduled(cron = "30 03 21 * * *")
 	public void enviarEmail() {
-		System.out.println("Enviando email...");		
+		System.out.println("Enviando email cron...");		
 	}	
 }
