@@ -17,17 +17,22 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import hsm.dao.CursoDAO;
 import hsm.dao.GenericDAO;
 import hsm.modelo.Curso;
 import hsm.modelo.TipoCurso;
+import hsm.servico.CursoServico;
 
 /**
  *
  * @author Rafael
  */
-@ManagedBean
-@ViewScoped
+@Controller("cursoBean")
+@Scope("session")
 public class CursoBean implements Serializable{
 	
 	private static final long serialVersionUID = 2238454125561714010L;
@@ -38,15 +43,15 @@ public class CursoBean implements Serializable{
     private List<Curso> cursosAccordion = new ArrayList<Curso>();
     private List<Curso> cursosFiltrados;
     private Curso cursoExcluir;
-    /**
-     * Creates a new instance of CursoBean
-     */
+   
+    @Autowired
+    private CursoServico cursoServico;
     
     public void IniciarBean()
     {
     	//cursos = new CursoDAO().listarCursos();
-    	cursos = new GenericDAO<Curso>(Curso.class).listarTodos();
-    	cursosAccordion = new CursoDAO().listarCursosAccordion();
+    	cursos = cursoServico.listarTodos();
+    	cursosAccordion = cursoServico.listarCursosAccordion();
     	tipos = Arrays.asList(TipoCurso.values());
     }
     
@@ -59,10 +64,10 @@ public class CursoBean implements Serializable{
     {
     	Thread.sleep(2000);
     	
-    	new GenericDAO<Curso>(Curso.class).Salvar(curso);
+    	cursoServico.salvar(curso);
         //new CursoDAO().Salvar(curso);
         
-    	cursos = new GenericDAO<Curso>(Curso.class).listarTodos();
+    	cursos = cursoServico.listarTodos();
         //cursos = new CursoDAO().listarCursos();
         curso = null;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso salvo com sucesso!"));
@@ -80,7 +85,7 @@ public class CursoBean implements Serializable{
     
     public void Excluir()
     {
-    	new CursoDAO().Excluir(cursoExcluir);
+    	cursoServico.Excluir(cursoExcluir);
     	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Curso excluído com sucesso!"));
     	cursos = new CursoDAO().listarCursos();    
     	cursosFiltrados = null;
