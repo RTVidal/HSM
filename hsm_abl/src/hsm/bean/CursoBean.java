@@ -13,8 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +20,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import hsm.dao.CursoDAO;
-import hsm.dao.GenericDAO;
 import hsm.modelo.Curso;
 import hsm.modelo.TipoCurso;
 import hsm.servico.CursoServico;

@@ -8,23 +8,26 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.io.IOUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import hsm.dao.CidadeDAO;
 import hsm.dao.GenericDAO;
 import hsm.modelo.Aluno;
 import hsm.modelo.Cidade;
 import hsm.modelo.Estado;
+import hsm.servico.AlunoServico;
+import hsm.servico.CidadeServico;
 
-@ManagedBean
-@SessionScoped
+@Controller()
+@Scope("session")
 public class AlunoBean implements Serializable{
 
 	private static final long serialVersionUID = -8991739415667347069L;
@@ -33,9 +36,15 @@ public class AlunoBean implements Serializable{
 	private List<Aluno> alunos;
 	private List<Estado> estados;
 	
+	@Autowired
+	private AlunoServico alunoServico;
+	
+	@Autowired
+	private CidadeServico cidadeServico;
+	
 	public void IniciarBean()
 	{
-		alunos = new GenericDAO<Aluno>(Aluno.class).listarTodos();
+		alunos = alunoServico.listarTodos();
 		estados = Arrays.asList(Estado.values());
 	}
 	
@@ -46,9 +55,9 @@ public class AlunoBean implements Serializable{
 	
 	public void Salvar()
 	{		
-		new GenericDAO<Aluno>(Aluno.class).Salvar(aluno);
+		alunoServico.salvar(aluno);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Aluno cadastrado com sucesso!"));
-		alunos = new GenericDAO<Aluno>(Aluno.class).listarTodos();
+		alunos = alunoServico.listarTodos();
 		aluno = null;
 	}
 	
@@ -76,7 +85,7 @@ public class AlunoBean implements Serializable{
 	
 	public List<Cidade> getCidadesDoEstado()
 	{
-		return CidadeDAO.ObterCidadesDoEstado(aluno.getEndereco().getCidade().getEstado());
+		return cidadeServico.obterCidadesDoEstado(aluno.getEndereco().getCidade().getEstado());
 	}
 	
 	public void EnviarFoto(FileUploadEvent event)

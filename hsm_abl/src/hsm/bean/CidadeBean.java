@@ -5,22 +5,22 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
-import javax.faces.component.UICommand;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
-import hsm.dao.CidadeDAO;
 import hsm.dao.GenericDAO;
 import hsm.modelo.Cidade;
 import hsm.modelo.Estado;
+import hsm.servico.CidadeServico;
 
-@ManagedBean
-@ViewScoped
+@Controller
+@Scope("session")
 public class CidadeBean implements Serializable {
 
 	/**
@@ -32,12 +32,15 @@ public class CidadeBean implements Serializable {
 	private List<Cidade> cidades;
 	private Cidade cidadeSelecionada;
 
+	@Autowired
+	private CidadeServico cidadeServico;
+	
 	public void IniciarBean() {
 		cidades = new GenericDAO<Cidade>(Cidade.class).listarTodos();
 	}
 
 	public void Salvar() {
-		new GenericDAO<Cidade>(Cidade.class).Salvar(cidade);
+		cidadeServico.salvar(cidade);
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cidade cadastrada com sucesso!"));
 		cidade = new Cidade();
 		cidadeSelecionada = null;
@@ -55,7 +58,7 @@ public class CidadeBean implements Serializable {
 	}
 
 	public void excluir() {
-		new GenericDAO<Cidade>(Cidade.class).Excluir(cidadeSelecionada);
+		cidadeServico.excluir(cidadeSelecionada);
 		cidadeSelecionada = null;
 		Consultar();
 	}
@@ -72,7 +75,7 @@ public class CidadeBean implements Serializable {
 	}
 
 	public void Consultar() {
-		cidades = new GenericDAO<Cidade>(Cidade.class).listarTodos();
+		cidades = cidadeServico.listarTodos();
 	}
 
 	public List<Estado> getEstados() {
