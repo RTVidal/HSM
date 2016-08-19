@@ -3,9 +3,6 @@ package hsm.bean;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -16,6 +13,7 @@ import hsm.modelo.Matricula;
 import hsm.servico.AlunoServico;
 import hsm.servico.CursoServico;
 import hsm.servico.MatriculaServico;
+import hsm.util.Mensagem;
 
 @Controller("matriculaBean")
 @Scope("session")
@@ -47,7 +45,7 @@ public class MatriculaBean implements Serializable {
 		matriculaServico.salvar(matricula);
 		atualizarMatriculas();
 		matricula = null;
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Matrícula efetuada com sucesso!"));
+		Mensagem.informacao("Matrícula salva com sucesso!");
 	}
 	
 	public void nova()

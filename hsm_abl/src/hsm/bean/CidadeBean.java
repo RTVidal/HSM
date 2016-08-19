@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
 import org.primefaces.component.datatable.DataTable;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
@@ -18,6 +15,7 @@ import hsm.dao.GenericDAO;
 import hsm.modelo.Cidade;
 import hsm.modelo.Estado;
 import hsm.servico.CidadeServico;
+import hsm.util.Mensagem;
 
 @Controller
 @Scope("session")
@@ -34,14 +32,14 @@ public class CidadeBean implements Serializable {
 
 	@Autowired
 	private CidadeServico cidadeServico;
-	
+
 	public void IniciarBean() {
 		cidades = new GenericDAO<Cidade>(Cidade.class).listarTodos();
 	}
 
 	public void Salvar() {
 		cidadeServico.salvar(cidade);
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cidade cadastrada com sucesso!"));
+		Mensagem.informacao("Cidade cadastrada com sucesso!");
 		cidade = new Cidade();
 		cidadeSelecionada = null;
 		Consultar();
@@ -70,7 +68,7 @@ public class CidadeBean implements Serializable {
 
 	public void onCellEdit(CellEditEvent event) {
 		DataTable table = (DataTable) event.getSource();
-		cidade = (Cidade)table.getRowData();
+		cidade = (Cidade) table.getRowData();
 		Salvar();
 	}
 

@@ -21,7 +21,13 @@ public class MatriculaServicoImpl implements MatriculaServico{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Matricula> listarTodos() {
-		return em.createQuery("from Matricula").getResultList();
+		return em.createNamedQuery(Matricula.LISTAR_TODOS).getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Matricula> listarTodasAtivas() {
+		return em.createNamedQuery("matricula.ListarTodasAtivas").getResultList();
 	}
 
 	@Override

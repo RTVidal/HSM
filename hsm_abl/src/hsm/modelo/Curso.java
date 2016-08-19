@@ -40,7 +40,13 @@ public class Curso implements Serializable{
     private TipoCurso tipo;
     private Date dataCriacao;
 
-    public Integer getId() {
+    public Curso(){}
+    
+    public Curso(String nomeCurso) {
+		this.nome = nomeCurso;
+	}
+
+	public Integer getId() {
         return id;
     }
 
