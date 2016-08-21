@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import hsm.modelo.Aluno;
 import hsm.modelo.Curso;
 import hsm.modelo.Matricula;
+import hsm.modelo.MatriculaVO;
 import hsm.servico.AlunoServico;
 import hsm.servico.CursoServico;
 import hsm.servico.MatriculaServico;
@@ -23,6 +24,7 @@ public class MatriculaBean implements Serializable {
 
 	private Matricula matricula;
 	private List<Matricula> matriculas;
+	private List<MatriculaVO> matriculasVOs;
 	private List<Aluno> alunos;
 	private List<Curso> cursos;
 
@@ -53,9 +55,9 @@ public class MatriculaBean implements Serializable {
 		matricula = new Matricula();
 	}
 	
-	public void editar(Matricula matricula)
+	public void editar(Integer id)
 	{
-		this.matricula = matricula;
+		this.matricula = matriculaServico.obterPorId(id);
 	}
 	
 	public void cancelar()
@@ -64,7 +66,8 @@ public class MatriculaBean implements Serializable {
 	}
 
 	private void atualizarMatriculas() {
-		matriculas = matriculaServico.listarTodos();
+		//matriculas = matriculaServico.listarTodos();
+		matriculasVOs = matriculaServico.listarTodos();
 	}
 
 	public Matricula getMatricula() {
@@ -98,4 +101,13 @@ public class MatriculaBean implements Serializable {
 	public void setCursos(List<Curso> cursos) {
 		this.cursos = cursos;
 	}
+
+	public List<MatriculaVO> getMatriculasVOs() {
+		return matriculasVOs;
+	}
+
+	public void setMatriculasVOs(List<MatriculaVO> matriculasVOs) {
+		this.matriculasVOs = matriculasVOs;
+	}
+	
 }

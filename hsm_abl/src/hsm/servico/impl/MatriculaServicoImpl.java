@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import hsm.modelo.Matricula;
+import hsm.modelo.MatriculaVO;
 import hsm.servico.MatriculaServico;
 
 @Service("matriculaServico")
@@ -20,7 +21,7 @@ public class MatriculaServicoImpl implements MatriculaServico{
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Matricula> listarTodos() {
+	public List<MatriculaVO> listarTodos() {
 		return em.createNamedQuery(Matricula.LISTAR_TODOS).getResultList();
 	}
 	
@@ -33,6 +34,11 @@ public class MatriculaServicoImpl implements MatriculaServico{
 	@Override
 	public void salvar(Matricula matricula) {
 		em.merge(matricula);		
+	}
+
+	@Override
+	public Matricula obterPorId(Integer id) {
+		return em.find(Matricula.class, id);
 	}
 
 }

@@ -11,25 +11,25 @@
 	<p:commandButton value="Nova Matrícula" action="#{matriculaBean.nova}"
 		update="matricula_form" icon="adicionar-icon" />
 
-	<p:dataTable value="#{matriculaBean.matriculas}" var="matricula"
+	<p:dataTable value="#{matriculaBean.matriculasVOs}" var="matricula"
 		style="margin-top:10px; width:80%" emptyMessage="Sem matrículas para exibir.">
 		<p:column headerText="Número" width="100">
 			<h:outputText value="#{matricula.numero}" />
 		</p:column>
 		<p:column headerText="Aluno">
-			<h:outputText value="#{matricula.aluno.nome}" />
+			<h:outputText value="#{matricula.nomeAluno}" />
 		</p:column>
 		<p:column headerText="Curso" width="250">
-			<h:outputText value="#{matricula.curso.nome}" />
+			<h:outputText value="#{matricula.nomeCurso}" />
 		</p:column>
 		<p:column headerText="Data Matrícula" width="100">
-			<h:outputText value="#{matricula.dataMatricula}">
+			<h:outputText value="#{matricula.data}">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
 			</h:outputText>
 		</p:column>
 		<p:column width="50" style="text-align: center">
 			<p:commandButton icon="editar-icon"
-				action="#{matriculaBean.editar(matricula)}" update=":matricula_form" />
+				action="#{matriculaBean.editar(matricula.id)}" update=":matricula_form" />
 		</p:column>
 	</p:dataTable>
 </p:panel>

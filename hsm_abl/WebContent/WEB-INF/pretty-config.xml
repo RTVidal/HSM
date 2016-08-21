@@ -33,5 +33,11 @@
 		<view-id value="/pages/cidades/cadastro_cidade.xhtml"/>
 		<action onPostback="false">#{cidadeBean.IniciarBean}</action>
 	</url-mapping>
+	
+	<url-mapping id="turmadragdrop">
+		<pattern value="/turma/dragdrop/"/>
+		<view-id value="/pages/turmas/turma_drag_drop.xhtml"/>
+		<action onPostback="false">#{turmaBean.iniciarBean}</action>
+	</url-mapping>
      
 </pretty-config>
