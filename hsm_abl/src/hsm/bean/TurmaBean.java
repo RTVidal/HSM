@@ -1,8 +1,10 @@
 package hsm.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.primefaces.event.DragDropEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -17,7 +19,7 @@ public class TurmaBean implements Serializable
 	private static final long serialVersionUID = 1557905709340838149L;
 	
 	private List<Matricula> matriculas;
-	private List<Matricula> matriculasInseridas;
+	private List<Matricula> matriculasInseridas = new ArrayList<Matricula>();
 	
 	@Autowired
 	private MatriculaServico matriculaServico;
@@ -25,6 +27,13 @@ public class TurmaBean implements Serializable
 	public void iniciarBean()
 	{
 		matriculas = matriculaServico.listarTodasAtivas();
+	}
+	
+	public void onMatriculaDrop(DragDropEvent event)
+	{
+		Matricula matricula = (Matricula)event.getData();
+		matriculas.remove(matricula);
+		matriculasInseridas.add(matricula);
 	}
 
 	public List<Matricula> getMatriculas() {
