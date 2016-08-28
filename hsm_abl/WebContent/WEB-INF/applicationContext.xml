@@ -70,24 +70,25 @@
 		<sec:logout success-handler-ref="logoutHandler"
 			delete-cookies="SPRING_SECURITY_REMEMBER_ME_COOKIE,JSESSIONID" />
 	</sec:http>
-	
-	<bean id="logoutHandler" class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
+
+	<bean id="logoutHandler"
+		class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
 		<property name="defaultTargetUrl" value="/login/" />
-    	<property name="redirectStrategy" ref="authenticationFailureRedirectStrategy" />
+		<property name="redirectStrategy" ref="authenticationFailureRedirectStrategy" />
 	</bean>
-	
-	<bean id="authenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+
+	<bean id="authenticationFailureHandler"
+		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
 		<property name="defaultFailureUrl" value="/login/failure" />
-    	<property name="redirectStrategy" ref="authenticationFailureRedirectStrategy" />
+		<property name="redirectStrategy" ref="authenticationFailureRedirectStrategy" />
 	</bean>
-		
-	<bean id="customAuthenticationProvider"
-		class="escola.musica.autenticacao.CustomAuthenticationProvider" />
+
+	<bean id="customAuthenticationProvider" class="hsm.autenticacao.CustomAuthenticationProvider" />
 
 	<sec:authentication-manager>
 		<sec:authentication-provider ref="customAuthenticationProvider" />
 	</sec:authentication-manager>
-	
+
 	<bean id="passwordEncoder"
 		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
 		<constructor-arg value="256" />

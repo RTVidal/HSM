@@ -8,6 +8,9 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 
+import hsm.modelo.Usuario;
+import hsm.servico.UsuarioServico;
+
 
 @SuppressWarnings("deprecation")
 public class CustomAuthenticationProvider implements AuthenticationProvider{
