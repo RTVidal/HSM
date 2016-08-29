@@ -26,6 +26,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		UsernamePasswordAuthenticationToken userToken = (UsernamePasswordAuthenticationToken) authentication;
 		String loginFornecido = userToken.getName();
 		String senhaFornecida = (String) userToken.getCredentials();
+		System.out.println("passou aqui");
 
 		verificarPreenchimentoLoginESenha(loginFornecido, senhaFornecida);
 		Usuario details = usuarioServico.obterUsuarioPeloLogin(loginFornecido);
@@ -43,7 +44,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		/*if (!senhaFornecida.equals(details.getPassword())) {
 			throw new BadCredentialsException("Login e/ou senha inválidos");
 		}*/
-		if (!passwordEncoder.encodePassword(senhaFornecida, null).equals(details.getPassword())) {
+		if (!senhaFornecida.equals(details.getPassword())) {
 			throw new BadCredentialsException("Login e/ou senha inválidos");
 		}
 	}
