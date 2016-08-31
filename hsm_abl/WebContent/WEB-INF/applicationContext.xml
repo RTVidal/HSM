@@ -66,12 +66,10 @@
 		<sec:form-login login-page="/pages/login/login.xhtml"
 			default-target-url="/pages/template/main.xhtml"
 			always-use-default-target="false" authentication-failure-handler-ref="authenticationFailureHandler" />
-		<sec:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+		<sec:intercept-url pattern="/**" access="ROLE_USER" />
 		<sec:logout success-handler-ref="logoutHandler"
 			delete-cookies="SPRING_SECURITY_REMEMBER_ME_COOKIE,JSESSIONID" />
 	</sec:http>
-	
-	<bean id="csrfSecurityRequestMatcher" class="hsm.autenticacao.CsrfSecurityRequestMatcher"/>
 	
 	<bean id="logoutHandler"
 		class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
