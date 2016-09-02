@@ -41,10 +41,10 @@ public class AuthorizationFilter implements Filter {
 			return;
 		}
 		
-		/*if(path.contains("/manutencao/")){
+		if(path.contains("/manutencao/")){
 			chain.doFilter(req, resp);
 			return;
-		}*/
+		}
 		
 		if (path.contains("css") || path.endsWith("js") || path.contains("fonts") || path.contains("images") 
 				|| path.contains("javax.faces.resource")) {
