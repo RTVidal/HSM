@@ -39,5 +39,11 @@
 		<view-id value="/pages/turmas/turma_drag_drop.xhtml"/>
 		<action onPostback="false">#{turmaBean.iniciarBean}</action>
 	</url-mapping>
+	
+	<url-mapping id="usuarioProfessor">
+		<pattern value="/usuarioprofessor/manutencao/"/>
+		<view-id value="/pages/usuarios/professores/usuario_professor_wrapper.xhtml"/>
+		<action onPostback="false">#{usuarioProfessorBean.iniciarBean}</action>
+	</url-mapping>
      
 </pretty-config>

@@ -8,6 +8,26 @@
 <p:panel header="Usuário Professor"
 	rendered="#{usuarioProfessorBean.usuarioProfessor != null}">
 
+	<p:panelGrid columns="2">
+		<h:outputLabel value="Nome:" />
+		<p:inputText value="#{usuarioProfessorBean.usuarioProfessor.nome}" />
+		<h:outputLabel value="Email:" />
+		<p:inputText value="#{usuarioProfessorBean.usuarioProfessor.email}" />
+		<h:outputLabel value="Grau Instrução:" />
+		<p:inputText
+			value="#{usuarioProfessorBean.usuarioProfessor.grauInstrucao}" />
+		<h:outputLabel value="Ativo:" />
+		<p:selectBooleanCheckbox
+			value="#{usuarioProfessorBean.usuarioProfessor.ativo}" />
+	</p:panelGrid>
+
+	<p:commandButton value="Salvar" icon="salvar-icon"
+		action="#{usuarioProfessorBean.salvar}"
+		update="usuario_professor_form" />
+
+	<p:commandButton value="Voltar" icon="voltar-icon"
+		action="#{usuarioProfessorBean.cancelar}"
+		update="usuario_professor_form" />
 
 </p:panel>
 

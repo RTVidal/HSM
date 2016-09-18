@@ -8,6 +8,23 @@
 <p:panel header="Usuários Professor"
 	rendered="#{usuarioProfessorBean.usuarioProfessor == null}">
 
+	<p:commandButton value="Novo Usuário" icon="adicionar-icon"
+		action="#{usuarioProfessorBean.novo}" update="usuario_professor_form"/>
+
+	<p:dataTable value="#{usuarioProfessorBean.usuariosProfessor}" var="usuario">
+		<p:column headerText="Nome">
+			<h:outputText value="#{usuario.nome}"/>
+		</p:column>
+		<p:column headerText="Login">
+			<h:outputText value="#{usuario.login}"/>
+		</p:column>
+		<p:column headerText="Email">
+			<h:outputText value="#{usuario.email}"/>
+		</p:column>
+		<p:column headerText="Ativo">
+			<h:outputText value="#{usuario.ativo ? 'Sim' : 'Não'}"/>
+		</p:column>
+	</p:dataTable>
 
 </p:panel>
 

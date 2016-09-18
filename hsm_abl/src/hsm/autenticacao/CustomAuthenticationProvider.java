@@ -39,12 +39,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 		if (details == null) {
 			throw new BadCredentialsException("Login e/ou senha inválidos");
 		}
-
 		
-		/*if (!senhaFornecida.equals(details.getPassword())) {
-			throw new BadCredentialsException("Login e/ou senha inválidos");
-		}*/
-		if (!senhaFornecida.equals(details.getPassword())) {
+		if (!passwordEncoder.encodePassword(senhaFornecida, null).equals(details.getPassword())) {
 			throw new BadCredentialsException("Login e/ou senha inválidos");
 		}
 	}
